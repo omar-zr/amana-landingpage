@@ -382,6 +382,39 @@ section{padding-block:96px}
   animation:spin 70s linear infinite;
 }
 
+/* ---------- register form (light-on-dark, logical properties only) ---------- */
+.reg-card{align-items:start}
+.reg-form{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1}
+.rf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.rf-row{grid-template-columns:1fr}}
+.rf-lbl{font-size:11.5px;color:var(--mist);display:block;margin-bottom:5px}
+.rf-inp{
+  width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);
+  border-radius:10px;padding:10px 12px;color:#fff;font:inherit;font-size:14px;
+}
+.rf-inp:focus{outline:none;border-color:var(--copper-lt);background:rgba(255,255,255,.09)}
+select.rf-inp option{color:var(--ink)}
+.rf-ltr{direction:ltr;text-align:start;font-family:var(--mono);font-size:13px}
+.rf-roles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rf-role{
+  border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:11px 12px;cursor:pointer;
+  display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--mist);transition:border-color .2s,background .2s;
+}
+.rf-role input{accent-color:var(--copper-lt)}
+.rf-role.on{border-color:var(--copper-lt);color:#fff;background:rgba(201,136,74,.12)}
+.rf-cats{border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px;display:none;margin:0}
+.rf-cats.show{display:block}
+.rf-cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:8px}
+.rf-cats-grid label{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--mist);cursor:pointer}
+.rf-cats-grid input{accent-color:var(--copper-lt)}
+.rf-err{display:none;font-size:12.5px;color:#F3B8A6;line-height:1.7}
+.rf-err.show{display:block}
+.rf-ok{display:none}
+.rf-ok.show{display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;padding:26px 8px}
+.rf-ok .ok-mark{width:52px;height:52px;border-radius:50%;border:2px solid var(--copper-lt);display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--copper-lt)}
+.rf-ok h3{color:#fff;font-size:18px}
+.rf-ok p{font-size:13px;color:var(--mist);line-height:1.9;margin-top:6px}
+
 /* ---------- footer ---------- */
 footer{background:var(--seal-deep);color:var(--mist);padding-block:56px 36px}
 .foot-top{display:flex;gap:36px;justify-content:space-between;flex-wrap:wrap;align-items:flex-start}
@@ -743,13 +776,61 @@ footer{background:var(--seal-deep);color:var(--mist);padding-block:56px 36px}
       <div class="reg-ring" aria-hidden="true"></div>
       <div>
         <div class="eyebrow"><span class="idx">04</span>Get verified</div>
-        <h2 data-i="reg_h2">سجّل منظمتك — التوثيق يبدأ بمكالمة</h2>
-        <p data-i="reg_p">شارة «موثَّق» لا تُشترى؛ تُمنح بعد تحقق من أوراق المنظمة وترخيصها. أخبرنا من أنت — مشفى، مخبر، أو مورّد — ونعود إليك خلال يومي عمل.</p>
+        <h2 data-i="reg_h2">سجّل منظمتك — من هنا مباشرة</h2>
+        <p data-i="reg_p">شارة «موثَّق» لا تُشترى؛ تُمنح بعد مراجعة أوراق المنظمة وترخيصها. عبّئ الطلب — مشفى، مخبر، أو مورّد — ويراجعه فريقنا خلال يومي عمل. عند الموافقة تدخل مباشرة بكلمة المرور التي تختارها الآن.</p>
       </div>
       <div class="reg-actions">
-        <a class="btn btn-p" href="mailto:hello@amanamed.com?subject=%D8%AA%D8%B3%D8%AC%D9%8A%D9%84%20%D9%85%D9%86%D8%B8%D9%85%D8%A9%20%E2%80%94%20%D8%A3%D9%85%D8%A7%D9%86%D8%A9" data-i="reg_cta">راسلنا لتسجيل منظمتك</a>
-        <a class="btn btn-ghost" href="mailto:hello@amanamed.com?subject=Demo%20request%20%E2%80%94%20Amana" data-i="reg_cta2">اطلب عرضاً تجريبياً</a>
-        <div class="reg-note">hello@amanamed.com</div>
+        <form id="regForm" class="reg-form" novalidate>
+          <div class="rf-roles" role="radiogroup" aria-label="نوع المنظمة">
+            <label class="rf-role on"><input type="radio" name="orgType" value="buyer" checked><span data-i="rf_buyer">مشفى / مخبر</span></label>
+            <label class="rf-role"><input type="radio" name="orgType" value="supplier"><span data-i="rf_supplier">مورّد</span></label>
+          </div>
+          <div class="rf-row">
+            <div><label class="rf-lbl" for="rfOrgAr" data-i="rf_org_ar">اسم المنظمة (عربي)</label><input class="rf-inp" id="rfOrgAr" name="orgNameAr" required></div>
+            <div><label class="rf-lbl" for="rfOrgEn" data-i="rf_org_en">اسم المنظمة (إنجليزي)</label><input class="rf-inp rf-ltr" id="rfOrgEn" name="orgNameEn" required></div>
+          </div>
+          <div>
+            <label class="rf-lbl" for="rfGov" data-i="rf_gov">المحافظة</label>
+            <select class="rf-inp" id="rfGov" name="governorate">
+              <option value="damascus" data-i="gov_damascus">دمشق</option>
+              <option value="aleppo" data-i="gov_aleppo">حلب</option>
+              <option value="homs" data-i="gov_homs">حمص</option>
+              <option value="latakia" data-i="gov_latakia">اللاذقية</option>
+              <option value="hama" data-i="gov_hama">حماة</option>
+              <option value="tartus" data-i="gov_tartus">طرطوس</option>
+            </select>
+          </div>
+          <fieldset class="rf-cats" id="rfCats">
+            <legend class="rf-lbl" data-i="rf_cats">فئات التوريد — تحدد المناقصات التي تراها</legend>
+            <div class="rf-cats-grid">
+              <label><input type="checkbox" name="categories" value="lab_supplies"><span data-i="cat_lab">مستلزمات مخبرية</span></label>
+              <label><input type="checkbox" name="categories" value="medical_devices"><span data-i="cat_dev">أجهزة طبية</span></label>
+              <label><input type="checkbox" name="categories" value="pharmaceuticals"><span data-i="cat_pharma">أدوية</span></label>
+              <label><input type="checkbox" name="categories" value="ppe"><span data-i="cat_ppe">معدات وقاية شخصية</span></label>
+              <label><input type="checkbox" name="categories" value="surgical_instruments"><span data-i="cat_surgical">أدوات جراحية</span></label>
+            </div>
+          </fieldset>
+          <div class="rf-row">
+            <div><label class="rf-lbl" for="rfContactAr" data-i="rf_contact_ar">اسم جهة الاتصال (عربي)</label><input class="rf-inp" id="rfContactAr" name="contactNameAr" required></div>
+            <div><label class="rf-lbl" for="rfContactEn" data-i="rf_contact_en">اسم جهة الاتصال (إنجليزي)</label><input class="rf-inp rf-ltr" id="rfContactEn" name="contactNameEn" required></div>
+          </div>
+          <div class="rf-row">
+            <div><label class="rf-lbl" for="rfEmail" data-i="rf_email">البريد الإلكتروني</label><input class="rf-inp rf-ltr" id="rfEmail" name="email" type="email" autocomplete="email" required></div>
+            <div><label class="rf-lbl" for="rfPhone" data-i="rf_phone">الهاتف (اختياري)</label><input class="rf-inp rf-ltr" id="rfPhone" name="phone" type="tel" autocomplete="tel"></div>
+          </div>
+          <div>
+            <label class="rf-lbl" for="rfPassword" data-i="rf_password">كلمة المرور (8 أحرف على الأقل) — تدخل بها بعد الموافقة</label>
+            <input class="rf-inp rf-ltr" id="rfPassword" name="password" type="password" autocomplete="new-password" minlength="8" required>
+          </div>
+          <div class="rf-err" id="rfErr" role="alert"></div>
+          <button class="btn btn-p" type="submit" id="rfSubmit" data-i="rf_submit">أرسل طلب التسجيل</button>
+          <div class="reg-note">hello@amanamed.com</div>
+        </form>
+        <div class="rf-ok" id="rfOk" role="status">
+          <div class="ok-mark" aria-hidden="true">✓</div>
+          <h3 data-i="rf_ok_h">استلمنا طلبك</h3>
+          <p data-i="rf_ok_p">يراجع فريقنا الطلب خلال يومي عمل. عند الموافقة تستطيع الدخول مباشرة بالبريد وكلمة المرور اللذين أدخلتهما.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -940,9 +1021,20 @@ var EN = {
   band_q:'One tender. Sealed bids. A decision on the record.',
   band_pair:'مناقصة واحدة، عروض مختومة، قرار موثَّق.',
   doc_title:'Purchase order',
-  reg_h2:'Register your organization — verification starts with a call',
-  reg_p:'The “Verified” badge can’t be bought; it’s granted after we check your organization’s papers and licence. Tell us who you are — hospital, laboratory, or supplier — and we’ll get back to you within two working days.',
-  reg_cta:'Email us to register', reg_cta2:'Request a demo',
+  reg_h2:'Register your organization — right here',
+  reg_p:'The “Verified” badge can’t be bought; it’s granted after we review your organization’s papers and licence. Fill in the request — hospital, laboratory, or supplier — and our team reviews it within two working days. Once approved, you sign in with the password you choose now.',
+  rf_buyer:'Hospital / Laboratory', rf_supplier:'Supplier',
+  rf_org_ar:'Organization name (Arabic)', rf_org_en:'Organization name (English)',
+  rf_gov:'Governorate',
+  gov_damascus:'Damascus', gov_aleppo:'Aleppo', gov_homs:'Homs', gov_latakia:'Latakia', gov_hama:'Hama', gov_tartus:'Tartus',
+  rf_cats:'Supply categories — they decide which tenders you see',
+  cat_lab:'Lab supplies', cat_dev:'Medical devices', cat_pharma:'Pharmaceuticals', cat_ppe:'Personal protective equipment', cat_surgical:'Surgical instruments',
+  rf_contact_ar:'Contact name (Arabic)', rf_contact_en:'Contact name (English)',
+  rf_email:'Email', rf_phone:'Phone (optional)',
+  rf_password:'Password (min 8 characters) — you sign in with it once approved',
+  rf_submit:'Send registration request',
+  rf_ok_h:'Request received',
+  rf_ok_p:'Our team reviews requests within two working days. Once approved, you can sign in right away with the email and password you entered.',
   foot_tag:'A sealed medical tender platform connecting hospitals and laboratories with suppliers — the lowest compliant bid wins, and every decision has a record.',
   foot_platform:'Platform', nav_how2:'How it works', nav_controls2:'The controls', nav_who2:'Who it serves',
   foot_contact:'Contact', foot_reg:'Register your organization',
@@ -970,6 +1062,101 @@ var EN = {
     document.title = mode === 'en'
       ? 'Amana أمانة — Every tender, on the record'
       : 'أمانة Amana — كل مناقصة موثَّقة';
+  });
+})();
+
+/* ---------- registration form: public POST to the Amana API ---------- */
+/* GitHub Pages is static, so the API base is public by design — the endpoint
+   is anonymous-safe on the server side (throttled, validated, audited).
+   localhost preview (python3 -m http.server 8000) talks to a local backend. */
+(function(){
+  var form = document.getElementById('regForm');
+  if (!form) return;
+
+  var API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? 'http://localhost:3000/api/v1'
+    : 'https://api.dev.amana-sy.com/api/v1';
+
+  /* Error copy lives here (not data-i): it is set dynamically after the
+     language toggle may have run, so it reads the live lang attribute. */
+  var MSG = {
+    conflict: { ar:'هذا البريد الإلكتروني مسجَّل بالفعل أو لديه طلب قيد المراجعة.',
+                en:'This email is already registered or has a pending request.' },
+    invalid:  { ar:'تحقق من الحقول — كل الحقول المطلوبة معبأة وكلمة المرور 8 أحرف على الأقل.',
+                en:'Check the fields — all required fields filled and the password at least 8 characters.' },
+    throttled:{ ar:'محاولات كثيرة خلال وقت قصير — انتظر دقيقة ثم حاول مجدداً.',
+                en:'Too many attempts — wait a minute and try again.' },
+    network:  { ar:'تعذّر الاتصال بالخادم — حاول مرة أخرى بعد قليل.',
+                en:'Could not reach the server — try again shortly.' }
+  };
+
+  var err = document.getElementById('rfErr');
+  var btn = document.getElementById('rfSubmit');
+  var cats = document.getElementById('rfCats');
+  var roleLabels = form.querySelectorAll('.rf-role');
+
+  function syncRole(){
+    var supplier = form.orgType.value === 'supplier';
+    roleLabels.forEach(function(label){
+      var input = label.querySelector('input');
+      label.classList.toggle('on', input.checked);
+    });
+    cats.classList.toggle('show', supplier);
+  }
+  form.querySelectorAll('input[name="orgType"]').forEach(function(input){
+    input.addEventListener('change', syncRole);
+  });
+
+  function showErr(kind){
+    var lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ar';
+    err.textContent = MSG[kind][lang];
+    err.classList.add('show');
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    err.classList.remove('show');
+    if (!form.checkValidity()){ form.reportValidity(); return; }
+
+    var payload = {
+      orgType: form.orgType.value,
+      orgNameAr: form.orgNameAr.value.trim(),
+      orgNameEn: form.orgNameEn.value.trim(),
+      governorate: form.governorate.value,
+      contactNameAr: form.contactNameAr.value.trim(),
+      contactNameEn: form.contactNameEn.value.trim(),
+      email: form.email.value.trim(),
+      password: form.password.value
+    };
+    var phone = form.phone.value.trim();
+    if (phone) payload.phone = phone;
+    if (form.orgType.value === 'supplier'){
+      var chosen = [];
+      form.querySelectorAll('input[name="categories"]:checked').forEach(function(c){
+        chosen.push(c.value);
+      });
+      if (chosen.length) payload.categories = chosen;
+    }
+
+    btn.disabled = true;
+    fetch(API_BASE + '/registrations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(res){
+      if (res.status === 201){
+        form.style.display = 'none';
+        document.getElementById('rfOk').classList.add('show');
+        return;
+      }
+      if (res.status === 409) showErr('conflict');
+      else if (res.status === 429) showErr('throttled');
+      else showErr('invalid');
+      btn.disabled = false;
+    }).catch(function(){
+      showErr('network');
+      btn.disabled = false;
+    });
   });
 })();
 </script>
