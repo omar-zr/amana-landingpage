@@ -800,6 +800,10 @@ footer{background:var(--seal-deep);color:var(--mist);padding-block:56px 36px}
               <option value="tartus" data-i="gov_tartus">طرطوس</option>
             </select>
           </div>
+          <div>
+            <label class="rf-lbl" for="rfAddress" data-i="rf_address">العنوان الكامل — الشارع، الحي، المدينة</label>
+            <input class="rf-inp" id="rfAddress" name="address" required>
+          </div>
           <fieldset class="rf-cats" id="rfCats">
             <legend class="rf-lbl" data-i="rf_cats">فئات التوريد — تحدد المناقصات التي تراها</legend>
             <div class="rf-cats-grid">
@@ -1026,6 +1030,7 @@ var EN = {
   rf_buyer:'Hospital / Laboratory', rf_supplier:'Supplier',
   rf_org_ar:'Organization name (Arabic)', rf_org_en:'Organization name (English)',
   rf_gov:'Governorate',
+  rf_address:'Full address — street, district, city',
   gov_damascus:'Damascus', gov_aleppo:'Aleppo', gov_homs:'Homs', gov_latakia:'Latakia', gov_hama:'Hama', gov_tartus:'Tartus',
   rf_cats:'Supply categories — they decide which tenders you see',
   cat_lab:'Lab supplies', cat_dev:'Medical devices', cat_pharma:'Pharmaceuticals', cat_ppe:'Personal protective equipment', cat_surgical:'Surgical instruments',
@@ -1123,6 +1128,7 @@ var EN = {
       orgNameAr: form.orgNameAr.value.trim(),
       orgNameEn: form.orgNameEn.value.trim(),
       governorate: form.governorate.value,
+      address: form.address.value.trim(),
       contactNameAr: form.contactNameAr.value.trim(),
       contactNameEn: form.contactNameEn.value.trim(),
       email: form.email.value.trim(),
