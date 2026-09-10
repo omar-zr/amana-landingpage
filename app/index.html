@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تطبيق أمانة للمورّدين — تحميل</title>
+<meta name="description" content="حمّل تطبيق أمانة للمورّدين على أندرويد — قدّم عروضك المختومة، صوّر منتجاتك، وتابع أوامر الشراء والمستحقات من هاتفك. Download the Amana supplier app for Android.">
+<meta property="og:title" content="تطبيق أمانة للمورّدين — تحميل">
+<meta property="og:description" content="تطبيق أندرويد للمورّدين — عروض مختومة، تصوير المنتجات، ومتابعة أوامر الشراء.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://amana-sy.com/app">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='31' fill='%230B3A31'/%3E%3Ccircle cx='32' cy='32' r='25.5' fill='none' stroke='%23A9662A' stroke-width='1.6' stroke-dasharray='2.4 3.6'/%3E%3Crect x='19' y='21.6' width='26' height='4.6' rx='2.3' fill='%23FBFAF6'/%3E%3Crect x='31' y='29.7' width='14' height='4.6' rx='2.3' fill='%23A9662A'/%3E%3Crect x='24' y='37.8' width='21' height='4.6' rx='2.3' fill='%23FBFAF6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --seal:#0B3A31; --seal-2:#0F4C41; --seal-deep:#072722;
+  --copper:#A9662A; --copper-lt:#C9884A; --copper-glow:rgba(201,136,74,.35);
+  --registry:#EDEDE7; --ink:#12171A; --slate:#6E7873; --rule:#D9D8CF; --card:#FBFAF6;
+  --st-award:#14684C;
+  --mist:#B9C7C2; --mist-2:#8FA5A0;
+  --sans:'IBM Plex Sans Arabic','Segoe UI',Tahoma,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:var(--sans);background:var(--registry);color:var(--ink);
+  font-feature-settings:"tnum" 1;font-size:16px;line-height:1.7;overflow-x:hidden;
+}
+.wrap{max-width:1160px;margin-inline:auto;padding-inline:24px}
+a{color:inherit;text-decoration:none}
+/* Latin/technical strings inside Arabic prose: isolate or the bidi algorithm
+   reorders them at the boundary. */
+.ltr{font-family:var(--mono);direction:ltr;unicode-bidi:isolate}
+
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:2.5px;color:var(--copper-lt);
+  text-transform:uppercase;margin-bottom:16px;direction:ltr;unicode-bidi:isolate;
+}
+[dir="rtl"] .eyebrow{text-align:right}
+
+/* ---------- header ---------- */
+#hdr{background:var(--seal-deep);border-bottom:1px solid rgba(255,255,255,.07)}
+#hdr .nav{display:flex;align-items:center;gap:18px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:11px;color:#fff}
+.brand .wm-ar{font-size:19px;font-weight:700;line-height:1.15;display:block}
+.brand .wm-lat{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--copper-lt);text-transform:uppercase;margin-top:3px;direction:ltr;display:block}
+.nav-links{display:flex;gap:24px;margin-inline-start:auto;font-size:14px;font-weight:500;color:var(--mist)}
+.nav-links a:hover{color:var(--copper-lt)}
+.lang-btn{
+  font-family:var(--mono);font-size:12px;color:#fff;border:1.5px solid rgba(255,255,255,.25);
+  background:transparent;border-radius:7px;padding:6px 12px;cursor:pointer;transition:.2s;
+}
+.lang-btn:hover{border-color:var(--copper-lt);color:var(--copper-lt)}
+
+/* ---------- hero ---------- */
+.hero{
+  background:linear-gradient(178deg,var(--seal-deep) 0%,var(--seal) 60%,#0A342C 100%);
+  color:#fff;padding-block:64px 72px;
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(30px,4.2vw,46px);font-weight:700;line-height:1.35;text-wrap:balance}
+.hero .en-pair{font-size:clamp(16px,2vw,20px);font-weight:500;color:var(--mist-2);margin-top:10px;unicode-bidi:plaintext}
+/* plaintext bidi aligns the pair line by its own script; force it to follow
+   the page direction so it stays flush with the h1 above it. */
+[dir="rtl"] .hero .en-pair{text-align:right}
+[dir="ltr"] .hero .en-pair{text-align:left}
+.hero p.lede{font-size:16.5px;color:var(--mist);line-height:1.95;margin-top:20px;max-width:52ch}
+
+.dl-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:30px}
+.btn{
+  font-family:var(--sans);font-size:15px;font-weight:600;padding:14px 26px;border-radius:10px;
+  display:inline-flex;align-items:center;gap:10px;cursor:pointer;transition:.22s;border:none;
+}
+.btn-p{background:var(--copper);color:#fff;box-shadow:0 6px 22px var(--copper-glow)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 30px var(--copper-glow);filter:brightness(1.06)}
+.btn-p .sz{font-family:var(--mono);font-size:12px;font-weight:400;opacity:.85;direction:ltr;unicode-bidi:isolate}
+.dl-note{font-size:13px;color:var(--mist-2);line-height:1.6;max-width:34ch}
+
+/* ---------- QR card ---------- */
+.qr-card{
+  background:var(--card);border-radius:18px;padding:24px;text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.28);justify-self:center;max-width:300px;
+}
+.qr-card svg{width:100%;height:auto;display:block;border-radius:8px}
+.qr-card .qr-t{font-size:14.5px;font-weight:600;color:var(--seal);margin-top:16px}
+.qr-card .qr-s{font-size:12px;color:var(--slate);margin-top:5px;line-height:1.6}
+.qr-card .qr-u{
+  font-family:var(--mono);font-size:11.5px;color:var(--copper);margin-top:12px;
+  padding-top:12px;border-top:1px solid var(--rule);direction:ltr;unicode-bidi:isolate;
+}
+
+/* ---------- sections ---------- */
+section.light{padding-block:64px}
+.sec-head{margin-bottom:34px}
+.sec-head h2{font-size:clamp(24px,3vw,32px);font-weight:700;color:var(--seal);line-height:1.4}
+.sec-head p{color:var(--slate);margin-top:8px;font-size:15.5px;max-width:60ch}
+
+/* install steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{
+  background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:26px 22px;position:relative;
+}
+.step .n{
+  font-family:var(--mono);font-size:12px;color:#fff;background:var(--copper);
+  width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  box-shadow:0 8px 18px var(--copper-glow);margin-bottom:14px;
+}
+.step h3{font-size:16.5px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.5}
+.step p{font-size:14.5px;color:var(--slate);line-height:1.8}
+
+/* spec table */
+.spec{background:var(--card);border:1px solid var(--rule);border-radius:16px;overflow:hidden}
+.spec dl{display:grid;grid-template-columns:minmax(150px,220px) 1fr}
+.spec dt,.spec dd{padding:14px 20px;border-bottom:1px solid var(--rule);font-size:14.5px}
+.spec dt{font-weight:600;color:var(--seal);background:rgba(217,216,207,.28)}
+.spec dd{color:var(--slate);min-width:0;overflow-wrap:anywhere}
+.spec dl>:nth-last-child(-n+2){border-bottom:none}
+.spec .hash{font-size:12.5px;line-height:1.7}
+.badge{
+  display:inline-block;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px;
+  background:#E1F0E9;color:var(--st-award);
+}
+
+/* ---------- footer ---------- */
+footer{background:var(--seal-deep);color:var(--mist-2);padding-block:32px;font-size:13.5px}
+footer .fw{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+footer a:hover{color:var(--copper-lt)}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .steps{grid-template-columns:1fr}
+  .spec dl{grid-template-columns:1fr}
+  .spec dt{border-bottom:none;padding-bottom:0;background:transparent}
+  .spec dd{padding-top:4px}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="أمانة Amana">
+      <svg width="36" height="36" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="31" fill="#FBFAF6"/>
+        <circle cx="32" cy="32" r="25.5" fill="none" stroke="#A9662A" stroke-width="1.6" stroke-dasharray="2.4 3.6"/>
+        <rect x="19" y="21.6" width="26" height="4.6" rx="2.3" fill="#0B3A31"/>
+        <rect x="31" y="29.7" width="14" height="4.6" rx="2.3" fill="#A9662A"/>
+        <rect x="24" y="37.8" width="21" height="4.6" rx="2.3" fill="#0B3A31"/>
+      </svg>
+      <span>
+        <span class="wm-ar">أمانة</span>
+        <span class="wm-lat">Amana</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="/" data-i="nav_home">الصفحة الرئيسية</a>
+      <a href="/#how" data-i="nav_how">كيف تعمل</a>
+    </nav>
+    <button class="lang-btn" id="langBtn" aria-label="Switch language">EN</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow" style="text-transform:none">ANDROID · v0.1.0</div>
+      <h1 data-i="h1">تطبيق أمانة للمورّدين</h1>
+      <div class="en-pair" data-i="h1_pair">Amana supplier app</div>
+      <p class="lede" data-i="lede">اعثر على المناقصات المفتوحة في اختصاصك، قدّم عرضك مختوماً مع صور المنتجات من كاميرا هاتفك، وتابع أوامر الشراء والمستحقات — مع إشعار فوري عند كل قرار يخصّك.</p>
+
+      <div class="dl-row">
+        <a class="btn btn-p" id="dlBtn"
+           href="https://github.com/omar-zr/amana-landingpage/releases/latest/download/amana-supplier.apk">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/>
+          </svg>
+          <span data-i="dl">تحميل ملف APK</span>
+          <span class="sz">49.9 MB</span>
+        </a>
+        <p class="dl-note" data-i="dl_note">لأجهزة أندرويد ٧٫٠ أو أحدث. التطبيق يُوزَّع خارج متجر Google Play، فسيطلب منك الهاتف السماح بالتثبيت أول مرة.</p>
+      </div>
+    </div>
+
+    <div class="qr-card">
+      <svg viewBox="0 0 33 33" shape-rendering="crispEdges" role="img" aria-labelledby="qrTitle">
+        <title id="qrTitle">QR code for https://amana-sy.com/app</title>
+        <path fill="#FBFAF6" d="M0 0h33v33H0z"/>
+        <path stroke="#0B3A31" d="M4 4.5h7m1 0h2m3 0h4m1 0h7M4 5.5h1m5 0h1m3 0h1m3 0h1m3 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m4 0h2m1 0h1m3 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m2 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m1 0h2m1 0h1m4 0h1m1 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M12 11.5h3m3 0h3M4 12.5h1m3 0h1m1 0h4m2 0h1m2 0h7m2 0h1M4 13.5h3m1 0h2m1 0h1m1 0h2m3 0h3m3 0h2m1 0h1M4 14.5h2m4 0h2m3 0h2m1 0h2m2 0h2m1 0h2M4 15.5h1m3 0h1m3 0h2m1 0h2m1 0h1m1 0h1m5 0h2M4 16.5h1m3 0h1m1 0h6m2 0h1m1 0h4m1 0h4M4 17.5h1m1 0h1m1 0h1m2 0h3m2 0h1m1 0h3m3 0h1m2 0h1M6 18.5h1m1 0h3m4 0h5m1 0h1m1 0h4M8 19.5h2m2 0h4m2 0h2m3 0h2m1 0h2M4 20.5h4m2 0h1m1 0h3m1 0h1m2 0h8M12 21.5h1m1 0h1m2 0h2m1 0h1m3 0h1M4 22.5h7m1 0h1m7 0h1m1 0h1m1 0h1M4 23.5h1m5 0h1m2 0h1m2 0h1m1 0h3m3 0h4M4 24.5h1m1 0h3m1 0h1m1 0h1m1 0h3m3 0h7M4 25.5h1m1 0h3m1 0h1m3 0h1m1 0h2m1 0h1m1 0h3m2 0h3M4 26.5h1m1 0h3m1 0h1m2 0h1m1 0h1m3 0h4m2 0h1m1 0h1M4 27.5h1m5 0h1m2 0h1m1 0h1m3 0h1m2 0h6M4 28.5h7m1 0h3m4 0h1m6 0h3"/>
+      </svg>
+      <div class="qr-t" data-i="qr_t">امسح الرمز بهاتفك</div>
+      <div class="qr-s" data-i="qr_s">يفتح هذه الصفحة على الهاتف، فتحمّل التطبيق مباشرةً منه.</div>
+      <div class="qr-u">amana-sy.com/app</div>
+    </div>
+  </div>
+</section>
+
+<section class="light">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span data-i="eb_install">Install</span></div>
+      <h2 data-i="install_h">التثبيت في ثلاث خطوات</h2>
+      <p data-i="install_p">التطبيق ليس على متجر Google Play بعد، لذلك يتم التثبيت من الملف مباشرة. هذا إجراء عادي، وأندرويد يطلب موافقتك عليه مرة واحدة فقط.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">١</div>
+        <h3 data-i="s1_h">حمّل الملف</h3>
+        <p data-i="s1_p">اضغط زر التحميل أعلاه. سينبّهك المتصفح إلى أن هذا النوع من الملفات قد يضرّ بجهازك — تابع التحميل.</p>
+      </div>
+      <div class="step">
+        <div class="n">٢</div>
+        <h3 data-i="s2_h">اسمح بالتثبيت</h3>
+        <p data-i="s2_p">افتح الملف من إشعار التحميل. إن طلب الهاتف الإذن، فعّل «السماح من هذا المصدر» للمتصفح ثم ارجع.</p>
+      </div>
+      <div class="step">
+        <div class="n">٣</div>
+        <h3 data-i="s3_h">سجّل الدخول</h3>
+        <p data-i="s3_p">افتح التطبيق وسجّل الدخول بحساب المورّد. ليس لديك حساب؟ أنشئ طلب تسجيل من داخل التطبيق ويعتمده مشرف المنصة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span data-i="eb_build">This build</span></div>
+      <h2 data-i="build_h">تفاصيل النسخة</h2>
+    </div>
+    <div class="spec">
+      <dl>
+        <dt data-i="k_ver">الإصدار</dt>
+        <dd><span class="ltr">0.1.0</span> <span data-i="v_ver">(بناء رقم ١)</span></dd>
+
+        <dt data-i="k_req">يتطلب</dt>
+        <dd><span data-i="v_req">أندرويد ٧٫٠ أو أحدث</span> <span class="ltr">(API 24+)</span></dd>
+
+        <dt data-i="k_arch">المعماريات</dt>
+        <dd><span class="ltr">arm64-v8a · armeabi-v7a</span></dd>
+
+        <dt data-i="k_pkg">اسم الحزمة</dt>
+        <dd><span class="ltr">com.amanamed.supplier</span></dd>
+
+        <dt data-i="k_size">الحجم</dt>
+        <dd><span class="ltr">52,303,344 bytes · 49.9 MB</span></dd>
+
+        <dt data-i="k_sign">التوقيع</dt>
+        <dd><span class="badge" data-i="v_sign">موقَّع — APK Signature Scheme v2</span></dd>
+
+        <dt data-i="k_hash">بصمة SHA-256</dt>
+        <dd class="ltr hash">02c513d234c3568115dcd205eee28fc90ac01dc256ae463f15a7a407dadcacc3</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap fw">
+    <div><span data-i="foot_copy">© 2026 أمانة — جميع الحقوق محفوظة</span></div>
+    <div><a href="mailto:hello@amana-sy.com" class="ltr">hello@amana-sy.com</a></div>
+  </div>
+</footer>
+
+<script>
+var EN = {
+  nav_home:'Home', nav_how:'How it works',
+  h1:'Amana supplier app', h1_pair:'تطبيق أمانة للمورّدين',
+  lede:'Find the open tenders in your categories, bid sealed with product photos straight from your phone’s camera, and track purchase orders and receivables — with a push notification on every decision that concerns you.',
+  dl:'Download APK',
+  dl_note:'For Android 7.0 or newer. The app is distributed outside Google Play, so your phone will ask you to allow the install once.',
+  qr_t:'Scan with your phone', qr_s:'Opens this page on the phone, so you can download the app straight from it.',
+  eb_install:'Install', install_h:'Install in three steps',
+  install_p:'The app isn’t on Google Play yet, so it installs from the file directly. This is routine, and Android asks for your approval only once.',
+  s1_h:'Download the file', s1_p:'Tap the download button above. Your browser will warn that this kind of file can harm your device — continue anyway.',
+  s2_h:'Allow the install', s2_p:'Open the file from the download notification. If the phone asks, turn on “Allow from this source” for your browser, then go back.',
+  s3_h:'Sign in', s3_p:'Open the app and sign in with your supplier account. No account yet? Send a registration request from inside the app and a platform admin approves it.',
+  eb_build:'This build', build_h:'Build details',
+  k_ver:'Version', v_ver:'(build 1)',
+  k_req:'Requires', v_req:'Android 7.0 or newer',
+  k_arch:'Architectures', k_pkg:'Package name', k_size:'Size',
+  k_sign:'Signature', v_sign:'Signed — APK Signature Scheme v2',
+  k_hash:'SHA-256 fingerprint',
+  foot_copy:'© 2026 Amana — All rights reserved'
+};
+
+(function(){
+  var btn = document.getElementById('langBtn');
+  var html = document.documentElement;
+  var AR = {};   // filled from the DOM — Arabic is the source of truth
+  var mode = 'ar';
+  document.querySelectorAll('[data-i]').forEach(function(el){
+    AR[el.getAttribute('data-i')] = el.textContent;
+  });
+  btn.addEventListener('click', function(){
+    mode = (mode === 'ar') ? 'en' : 'ar';
+    var dict = (mode === 'en') ? EN : AR;
+    document.querySelectorAll('[data-i]').forEach(function(el){
+      var k = el.getAttribute('data-i');
+      if (dict[k] !== undefined) el.textContent = dict[k];
+    });
+    html.setAttribute('lang', mode);
+    html.setAttribute('dir', mode === 'en' ? 'ltr' : 'rtl');
+    btn.textContent = mode === 'en' ? 'ع AR' : 'EN';
+    document.title = mode === 'en'
+      ? 'Amana supplier app — Download'
+      : 'تطبيق أمانة للمورّدين — تحميل';
+    // Western digits in the step markers when reading English (SRS 5.6 keeps
+    // Western digits in Arabic prose too, but the markers are decorative).
+    document.querySelectorAll('.step .n').forEach(function(el, i){
+      el.textContent = mode === 'en' ? String(i + 1) : ['١','٢','٣'][i];
+    });
+  });
+})();
+</script>
+</body>
+</html>
