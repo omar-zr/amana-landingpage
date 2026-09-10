@@ -18,7 +18,6 @@
   --seal:#0B3A31; --seal-2:#0F4C41; --seal-deep:#072722;
   --copper:#A9662A; --copper-lt:#C9884A; --copper-glow:rgba(201,136,74,.35);
   --registry:#EDEDE7; --ink:#12171A; --slate:#6E7873; --rule:#D9D8CF; --card:#FBFAF6;
-  --st-award:#14684C;
   --mist:#B9C7C2; --mist-2:#8FA5A0;
   --sans:'IBM Plex Sans Arabic','Segoe UI',Tahoma,Arial,sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,'Courier New',monospace;
@@ -75,7 +74,6 @@ a{color:inherit;text-decoration:none}
 }
 .btn-p{background:var(--copper);color:#fff;box-shadow:0 6px 22px var(--copper-glow)}
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 30px var(--copper-glow);filter:brightness(1.06)}
-.btn-p .sz{font-family:var(--mono);font-size:12px;font-weight:400;opacity:.85;direction:ltr;unicode-bidi:isolate}
 .dl-note{font-size:13px;color:var(--mist-2);line-height:1.6;max-width:34ch}
 
 /* ---------- QR card ---------- */
@@ -110,19 +108,6 @@ section.light{padding-block:64px}
 .step h3{font-size:16.5px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.5}
 .step p{font-size:14.5px;color:var(--slate);line-height:1.8}
 
-/* spec table */
-.spec{background:var(--card);border:1px solid var(--rule);border-radius:16px;overflow:hidden}
-.spec dl{display:grid;grid-template-columns:minmax(150px,220px) 1fr}
-.spec dt,.spec dd{padding:14px 20px;border-bottom:1px solid var(--rule);font-size:14.5px}
-.spec dt{font-weight:600;color:var(--seal);background:rgba(217,216,207,.28)}
-.spec dd{color:var(--slate);min-width:0;overflow-wrap:anywhere}
-.spec dl>:nth-last-child(-n+2){border-bottom:none}
-.spec .hash{font-size:12.5px;line-height:1.7}
-.badge{
-  display:inline-block;font-size:12.5px;font-weight:600;padding:2px 10px;border-radius:20px;
-  background:#E1F0E9;color:var(--st-award);
-}
-
 /* ---------- footer ---------- */
 footer{background:var(--seal-deep);color:var(--mist-2);padding-block:32px;font-size:13.5px}
 footer .fw{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
@@ -131,9 +116,6 @@ footer a:hover{color:var(--copper-lt)}
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:40px}
   .steps{grid-template-columns:1fr}
-  .spec dl{grid-template-columns:1fr}
-  .spec dt{border-bottom:none;padding-bottom:0;background:transparent}
-  .spec dd{padding-top:4px}
   .nav-links{display:none}
 }
 </style>
@@ -168,7 +150,6 @@ footer a:hover{color:var(--copper-lt)}
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow" style="text-transform:none">ANDROID · v0.1.0</div>
       <h1 data-i="h1">تطبيق أمانة للمورّدين</h1>
       <div class="en-pair" data-i="h1_pair">Amana supplier app</div>
       <p class="lede" data-i="lede">اعثر على المناقصات المفتوحة في اختصاصك، قدّم عرضك مختوماً مع صور المنتجات من كاميرا هاتفك، وتابع أوامر الشراء والمستحقات — مع إشعار فوري عند كل قرار يخصّك.</p>
@@ -180,7 +161,6 @@ footer a:hover{color:var(--copper-lt)}
             <path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/>
           </svg>
           <span data-i="dl">تحميل ملف APK</span>
-          <span class="sz">49.9 MB</span>
         </a>
         <p class="dl-note" data-i="dl_note">لأجهزة أندرويد ٧٫٠ أو أحدث. التطبيق يُوزَّع خارج متجر Google Play، فسيطلب منك الهاتف السماح بالتثبيت أول مرة.</p>
       </div>
@@ -226,45 +206,12 @@ footer a:hover{color:var(--copper-lt)}
   </div>
 </section>
 
-<section class="light" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow"><span data-i="eb_build">This build</span></div>
-      <h2 data-i="build_h">تفاصيل النسخة</h2>
-    </div>
-    <div class="spec">
-      <dl>
-        <dt data-i="k_ver">الإصدار</dt>
-        <dd><span class="ltr">0.1.0</span> <span data-i="v_ver">(بناء رقم ١)</span></dd>
-
-        <dt data-i="k_req">يتطلب</dt>
-        <dd><span data-i="v_req">أندرويد ٧٫٠ أو أحدث</span> <span class="ltr">(API 24+)</span></dd>
-
-        <dt data-i="k_arch">المعماريات</dt>
-        <dd><span class="ltr">arm64-v8a · armeabi-v7a</span></dd>
-
-        <dt data-i="k_pkg">اسم الحزمة</dt>
-        <dd><span class="ltr">com.amanamed.supplier</span></dd>
-
-        <dt data-i="k_size">الحجم</dt>
-        <dd><span class="ltr">52,303,344 bytes · 49.9 MB</span></dd>
-
-        <dt data-i="k_sign">التوقيع</dt>
-        <dd><span class="badge" data-i="v_sign">موقَّع — APK Signature Scheme v2</span></dd>
-
-        <dt data-i="k_hash">بصمة SHA-256</dt>
-        <dd class="ltr hash">02c513d234c3568115dcd205eee28fc90ac01dc256ae463f15a7a407dadcacc3</dd>
-      </dl>
-    </div>
-  </div>
-</section>
 
 </main>
 
 <footer>
   <div class="wrap fw">
     <div><span data-i="foot_copy">© 2026 أمانة — جميع الحقوق محفوظة</span></div>
-    <div><a href="mailto:hello@amana-sy.com" class="ltr">hello@amana-sy.com</a></div>
   </div>
 </footer>
 
@@ -281,12 +228,6 @@ var EN = {
   s1_h:'Download the file', s1_p:'Tap the download button above. Your browser will warn that this kind of file can harm your device — continue anyway.',
   s2_h:'Allow the install', s2_p:'Open the file from the download notification. If the phone asks, turn on “Allow from this source” for your browser, then go back.',
   s3_h:'Sign in', s3_p:'Open the app and sign in with your supplier account. No account yet? Send a registration request from inside the app and a platform admin approves it.',
-  eb_build:'This build', build_h:'Build details',
-  k_ver:'Version', v_ver:'(build 1)',
-  k_req:'Requires', v_req:'Android 7.0 or newer',
-  k_arch:'Architectures', k_pkg:'Package name', k_size:'Size',
-  k_sign:'Signature', v_sign:'Signed — APK Signature Scheme v2',
-  k_hash:'SHA-256 fingerprint',
   foot_copy:'© 2026 Amana — All rights reserved'
 };
 

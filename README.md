@@ -6,10 +6,9 @@ Landing page for **أمانة Amana** — a sealed medical tender platform conne
 
 ## Structure
 
-- `index.html` — **V2 (official)**: the cinematic version. Dark hero, 3D mouse-tilt product mock, spinning seal coin, split-flap countdown, scroll-reveal animations, role marquee, and a SEALED stamp animation. Respects `prefers-reduced-motion`.
-- `v1.html` — **V1**: the classic landing page. Clean, editorial, registry-paper aesthetic.
+- `index.html` — the landing page. Dark hero, 3D mouse-tilt product mock, spinning seal coin, split-flap countdown, scroll-reveal animations, role marquee, and a SEALED stamp animation. Respects `prefers-reduced-motion`.
 
-Both are self-contained (single file, inline CSS/JS), Arabic-first RTL with a full English toggle (`EN` button in the header). Fonts load from Google Fonts (IBM Plex Sans Arabic + IBM Plex Mono).
+Self-contained (single file, inline CSS/JS), Arabic-first RTL with a full English toggle (`EN` button in the header). Fonts load from Google Fonts (IBM Plex Sans Arabic + IBM Plex Mono).
 
 ## Preview locally
 
