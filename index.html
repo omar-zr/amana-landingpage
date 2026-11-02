@@ -394,7 +394,7 @@ section{padding-block:96px}
 .rf-inp:focus{outline:none;border-color:var(--copper-lt);background:rgba(255,255,255,.09)}
 select.rf-inp option{color:var(--ink)}
 .rf-ltr{direction:ltr;text-align:start;font-family:var(--mono);font-size:13px}
-.rf-roles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rf-roles{display:grid;grid-template-columns:1fr;gap:8px}
 .rf-role{
   border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:11px 12px;cursor:pointer;
   display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--mist);transition:border-color .2s,background .2s;
@@ -776,12 +776,13 @@ footer{background:var(--seal-deep);color:var(--mist);padding-block:56px 36px}
       <div>
         <div class="eyebrow"><span class="idx">04</span>Get verified</div>
         <h2 data-i="reg_h2">سجّل منظمتك — من هنا مباشرة</h2>
-        <p data-i="reg_p">شارة «موثَّق» لا تُشترى؛ تُمنح بعد مراجعة أوراق المنظمة وترخيصها. عبّئ الطلب — مشفى، مخبر، أو مورّد — ويراجعه فريقنا خلال يومي عمل. عند الموافقة تدخل مباشرة بكلمة المرور التي تختارها الآن.</p>
+        <p data-i="reg_p">شارة «موثَّق» لا تُشترى؛ تُمنح بعد مراجعة أوراق المنظمة وترخيصها. عبّئ الطلب — مشفى، مخبر، منظمة غير حكومية، أو مورّد — ويراجعه فريقنا خلال يومي عمل. عند الموافقة تدخل مباشرة بكلمة المرور التي تختارها الآن.</p>
       </div>
       <div class="reg-actions">
         <form id="regForm" class="reg-form" novalidate>
           <div class="rf-roles" role="radiogroup" aria-label="نوع المنظمة">
             <label class="rf-role on"><input type="radio" name="orgType" value="buyer" checked><span data-i="rf_buyer">مشفى / مخبر</span></label>
+            <label class="rf-role"><input type="radio" name="orgType" value="ngo"><span data-i="rf_ngo">منظمة غير حكومية</span></label>
             <label class="rf-role"><input type="radio" name="orgType" value="supplier"><span data-i="rf_supplier">مورّد</span></label>
           </div>
           <div class="rf-row">
@@ -1023,8 +1024,8 @@ var EN = {
   band_pair:'مناقصة واحدة، عروض مختومة، قرار موثَّق.',
   doc_title:'Purchase order',
   reg_h2:'Register your organization — right here',
-  reg_p:'The “Verified” badge can’t be bought; it’s granted after we review your organization’s papers and licence. Fill in the request — hospital, laboratory, or supplier — and our team reviews it within two working days. Once approved, you sign in with the password you choose now.',
-  rf_buyer:'Hospital / Laboratory', rf_supplier:'Supplier',
+  reg_p:'The “Verified” badge can’t be bought; it’s granted after we review your organization’s papers and licence. Fill in the request — hospital, laboratory, NGO, or supplier — and our team reviews it within two working days. Once approved, you sign in with the password you choose now.',
+  rf_buyer:'Hospital / Laboratory', rf_ngo:'NGO', rf_supplier:'Supplier',
   rf_org_ar:'Organization name (Arabic)', rf_org_en:'Organization name (English)',
   rf_gov:'Governorate',
   rf_address:'Full address — street, district, city',
@@ -1120,8 +1121,13 @@ var EN = {
     err.classList.remove('show');
     if (!form.checkValidity()){ form.reportValidity(); return; }
 
+    // Three choices, two org types: an NGO registers as a buyer whose kind
+    // is 'ngo' — its tenders run as two-envelope tenders (amana-be,
+    // docs/ngo-two-envelope-tenders.md). A hospital or lab is the default
+    // buyer kind.
+    var role = form.orgType.value;
     var payload = {
-      orgType: form.orgType.value,
+      orgType: role === 'supplier' ? 'supplier' : 'buyer',
       orgNameAr: form.orgNameAr.value.trim(),
       orgNameEn: form.orgNameEn.value.trim(),
       governorate: form.governorate.value,
@@ -1131,6 +1137,7 @@ var EN = {
       email: form.email.value.trim(),
       password: form.password.value
     };
+    if (role !== 'supplier') payload.buyerKind = role === 'ngo' ? 'ngo' : 'hospital';
     var phone = form.phone.value.trim();
     if (phone) payload.phone = phone;
     if (form.orgType.value === 'supplier'){
